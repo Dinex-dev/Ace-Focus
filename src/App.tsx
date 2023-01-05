@@ -1,10 +1,10 @@
-import "./App.css";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
     <>
-    <h1>Hello world</h1>
+    <Profile />
     </>
   )
 }
