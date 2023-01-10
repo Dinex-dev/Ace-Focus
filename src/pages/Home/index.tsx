@@ -1,6 +1,5 @@
 import React from 'react'
 import './Home-page.css';
-import './Home-page';
 
 export default function Index() {
   return (
@@ -30,22 +29,6 @@ export default function Index() {
                 <h2>Research and Development</h2>
             </div>
         </div>
-        {/* Home page intro when page starts/reloads  */}
-       <div>
-         {/* For home page intro lines */}
-        <div className="Home-intro">
-            <div className="Home-intro-text">
-                <h1>
-                    <p className="Home-text">Welcome To ACE-Focus</p>
-                </h1>
-                <h1 id="Home-small-text">
-                    <p className="Home-text">BY ACE</p>
-                </h1>
-            </div>
-        </div>
-         {/* For home page intro background  */}
-        <div className="Home-slider"></div>
-       </div>
     </div>
   )
 }
