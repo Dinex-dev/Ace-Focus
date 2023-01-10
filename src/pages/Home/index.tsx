@@ -4,7 +4,7 @@ import './Home-page.css';
 export default function Index() {
   return (
     <div>
-         {/* Home page domain box area container */}
+         {/* Home page domain boxes container */}
         <div className="HomePage-container">
              {/* Home page domain box  */}
             <div className="HomePage-Box">

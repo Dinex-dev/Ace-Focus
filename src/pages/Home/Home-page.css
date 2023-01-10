@@ -1,4 +1,4 @@
-/* HOME PAGE CSS */
+/* ----------------------- HOME PAGE CSS SHEET ---------------------------*/
 
 /* Google font import */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
@@ -81,19 +81,19 @@ body{
 /* Media queries */
 @media (max-width:998px) {
     html{
-        font-size: 55%;
+        font-size: 70%;
     }   
+    .HomePage-container{
+        grid-template-columns: repeat(2,auto);
+    }
 }
 @media (max-width:766px) {
     html{
-        font-size: 45%;
-    }
-    body{
-        margin: 3rem 2rem;
+        font-size: 57%;
     }
     .HomePage-container{
         display: flex;
         position: relative;
         flex-direction: column;
-    }   
+    }
 }
