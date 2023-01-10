@@ -8,6 +8,8 @@ specifiers:
   firebase: ^9.15.0
   react: ^18.2.0
   react-dom: ^18.2.0
+  react-error-overlay: 6.0.9
+  react-firebase-hooks: ^5.1.1
   react-icons: ^4.7.1
   react-router-dom: ^6.6.1
   styled-components: ^5.3.6
@@ -19,6 +21,7 @@ dependencies:
   firebase: 9.15.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-firebase-hooks: 5.1.1_v6fjscufgdj3brau76e76lehmq
   react-icons: 4.7.1_react@18.2.0
   react-router-dom: 6.6.1_biqbaboplfbrettd7655fr4n2y
   styled-components: 5.3.6_biqbaboplfbrettd7655fr4n2y
@@ -27,6 +30,7 @@ devDependencies:
   '@types/react': 18.0.26
   '@types/react-dom': 18.0.10
   '@vitejs/plugin-react': 3.0.0_vite@4.0.4
+  react-error-overlay: 6.0.9
   typescript: 4.9.4
   vite: 4.0.4
 
@@ -1549,6 +1553,20 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: false
+
+  /react-error-overlay/6.0.9:
+    resolution: {integrity: sha512-nQTTcUu+ATDbrSD1BZHr5kgSD4oF8OFjxun8uAaL8RwPBacGBNPf/yAuVVdx17N8XNzRDMrZ9XcKZHCjPW+9ew==}
+    dev: true
+
+  /react-firebase-hooks/5.1.1_v6fjscufgdj3brau76e76lehmq:
+    resolution: {integrity: sha512-y2UpWs82xs+39q5Rc/wq316ca52QsC0n8m801V+yM4IC4hbfOL4yQPVSh7w+ydstdvjN9F+lvs1WrO2VYxpmdA==}
+    peerDependencies:
+      firebase: '>= 9.0.0'
+      react: '>= 16.8.0'
+    dependencies:
+      firebase: 9.15.0
+      react: 18.2.0
     dev: false
 
   /react-icons/4.7.1_react@18.2.0:
