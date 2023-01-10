@@ -1,4 +1,6 @@
 import React from 'react'
+import './Home-page.css';
+import './Home-page';
 
 export default function Index() {
   return (
