@@ -1,0 +1,41 @@
+.pushkar-container{
+    margin: 3rem;
+}
+
+.users-desktop{
+    display: flex;
+    margin: auto;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+    .user{
+        min-width: 240px;
+        width: 90%;
+        max-width: 250px;
+        margin: 1rem;
+        .my-image-container{
+            height: 200px;
+            background-color: rgba(239, 236, 236, 0.429);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
+
+@media (max-width: '942px') {
+    .users-desktop{
+        .user{
+            min-width: fit-content;
+            max-width: 45%;
+        }
+    }
+}
+
+@media (max-width: '542px') {
+    .users-desktop{
+        .user{
+            min-width: fit-content;
+            max-width: 90%;
+        }
+    }
+}
