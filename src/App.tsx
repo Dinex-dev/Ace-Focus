@@ -1,12 +1,22 @@
+import { Route, BrowserRouter, Routes } from "react-router-dom";
 import "./App.css";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import { AuthProvider } from "./Auth";
+import Register from "./pages/Register";
 
 function App() {
   return (
-    <>
-    <h1>Hello world</h1>
-    </>
-  )
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
+  );
 }
 
 export default App;
