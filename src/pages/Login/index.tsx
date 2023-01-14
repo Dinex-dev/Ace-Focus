@@ -1,10 +1,10 @@
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import React, { FormEvent, useCallback, useContext } from "react";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../Auth";
+import { AuthContext } from "../../firebase/Auth";
 import "./login.css";
-import app from "../../base";
-import App from "../../base";
+import app from "../../firebase/base";
+import App from "../../firebase/base";
 
 const Login = () => {
   const handleLogin = useCallback(

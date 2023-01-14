@@ -2,7 +2,7 @@ import { Route, BrowserRouter, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import { AuthProvider } from "./Auth";
+import { AuthProvider } from "./firebase/Auth";
 import Register from "./pages/Register";
 
 function App() {

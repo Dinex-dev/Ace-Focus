@@ -12,10 +12,19 @@ import {
   uploadBytes,
   uploadBytesResumable,
   getDownloadURL,
+  connectStorageEmulator,
 } from "firebase/storage";
 import React, { FormEvent, useState } from "react";
-import app from "../../base";
-import { getDatabase, ref as dbref, set } from "firebase/database";
+import app from "../../firebase/base";
+import {
+  connectDatabaseEmulator,
+  getDatabase,
+  ref as dbref,
+  set,
+} from "firebase/database";
+import { auth } from "../../firebase/Auth";
+import { storageRef } from "../../firebase/Storage";
+import { db } from "../../firebase/Database";
 
 type UserData = {
   FirstName: string;
@@ -29,7 +38,6 @@ type UserData = {
 };
 
 function writeUserData(data: UserData) {
-  const db = getDatabase();
   set(dbref(db, "users/" + data.userID), data)
     .then(() => {
       console.log("user data written");
@@ -40,7 +48,6 @@ function writeUserData(data: UserData) {
 }
 
 const uploadFile = async (file: File, userData: UserData) => {
-  const storageRef = ref(getStorage());
   // Create a child reference
   const profilePicRef = ref(
     storageRef.storage,
@@ -89,7 +96,7 @@ function RegisterForm() {
     const profilePic = userData.profilePic;
     delete userData.profilePic;
     createUserWithEmailAndPassword(
-      getAuth(app),
+      auth,
       userData.email.toString(),
       userData.password.toString()
     )
@@ -99,7 +106,8 @@ function RegisterForm() {
         const dbRef = dbref(getDatabase(), "users/" + userCredential.user.uid);
         userData.userID = userCredential.user.uid;
         await uploadFile(profilePic, userData);
-        event.currentTarget.reset();
+        console.log("user data written");
+        console.log(event);
       })
       .catch((error) => {
         console.log(error);
@@ -146,108 +154,92 @@ function RegisterForm() {
             placeholder="Password"
             id="login-input"
           />
-
-          <input
-            className="login-input"
-            type="file"
-            name="profilePic"
-            placeholder="Profile Pic"
-          />
           <input
             type="text"
             name="status"
             className="login-input"
             placeholder="Current Status"
           />
+          <label
+            htmlFor="profilePic"
+            className="FileUpload"
+            style={{
+              marginBottom: "10px",
+              display: "flex",
+              justifyContent: "space-between",
+              width: "80%",
+            }}
+          >
+            <span>Profile Pic:</span>
+            <span
+              style={{
+                background: "#63c4ff",
+                color: "white",
+                padding: "5px",
+                borderRadius: "5px",
+              }}
+              id="login-button"
+            >
+              Upload
+            </span>
+            <input
+              id="profilePic"
+              style={{ display: "none" }}
+              type="file"
+              name="profilePic"
+              placeholder="Profile Pic"
+            />
+          </label>
 
-          <div>
-            Department:
-            <label>
-              CyberSecurity
-              <input type="checkbox" name="department" value="CyberSecurity" />
-            </label>
-            <label>
-              Web Development
-              <input
-                type="checkbox"
-                name="department"
-                value="Web Development"
-              />
-            </label>
-            <label>
-              R&D
-              <input type="checkbox" name="department" value="R&D" />
-            </label>
-            <label>
-              Design
-              <input type="checkbox" name="department" value="Design" />
-            </label>
+          <div
+            style={{
+              width: "80%",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+            }}
+          >
+            <h2>Department:</h2>
+            <div
+              style={{
+                marginLeft: 20,
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <label>
+                <input
+                  type="checkbox"
+                  name="department"
+                  value="CyberSecurity"
+                />
+                CyberSecurity
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="department"
+                  value="Web Development"
+                />
+                Web Development
+              </label>
+              <label>
+                <input type="checkbox" name="department" value="R&D" />
+                R&D
+              </label>
+              <label>
+                <input type="checkbox" name="department" value="Design" />
+                Design
+              </label>
+            </div>
           </div>
+          <br />
           <button type="submit" id="login-button">
-            Login
+            Register
           </button>
         </form>
       </div>
     </>
-    // <form onSubmit={handleSubmit}>
-    //   <label>
-    //     First Name :
-    //     <input type="text" name="firstName" />
-    //   </label>
-    //   <br />
-    //   <label>
-    //     Last Name :
-    //     <input type="text" name="lastName" />
-    //   </label>
-    //   <br />
-    //   <label>
-    //     Username:
-    //     <input type="text" name="userName" />
-    //   </label>
-    //   <br />
-    //   <label>
-    //     Email:
-    //     <input type="email" name="email" />
-    //   </label>
-    //   <br />
-    //   <label>
-    //     Department:
-    //     {/* check boxes */}
-    //     <label>
-    //       CyberSecurity
-    //       <input type="checkbox" name="department" value="CyberSecurity" />
-    //     </label>
-    //     <label>
-    //       Web Development
-    //       <input type="checkbox" name="department" value="Web Development" />
-    //     </label>
-    //     <label>
-    //       R&D
-    //       <input type="checkbox" name="department" value="R&D" />
-    //     </label>
-    //     <label>
-    //       Design
-    //       <input type="checkbox" name="department" value="Design" />
-    //     </label>
-    //   </label>
-    //   <br />
-    //   <label>
-    //     Password:
-    //     <input type="password" name="password" />
-    //   </label>
-    //   <br />
-    //   <label>
-    //     Profile pic:
-    //     <input type="file" name="profilePic" />
-    //   </label>
-    //   <br />
-    //   <label>
-    //     Status:
-    //     <input type="text" name="status" />
-    //   </label>
-    //   <br />
-    //   <button type="submit">Submit</button>
-    // </form>
   );
 }
 
